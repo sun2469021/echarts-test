@@ -30,7 +30,8 @@ export default {
   },
   data() {
     return {
-      chartId: null
+      chartId: null,
+      myChart: null
     };
   },
   created() {
@@ -42,7 +43,7 @@ export default {
   methods: {
     echartsShow() {
       // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById(this.chartId));
+      this.myChart = echarts.init(document.getElementById(this.chartId));
 
       // 指定图表的配置项和数据
       var option = {
@@ -67,7 +68,7 @@ export default {
       };
 
       // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+      this.myChart.setOption(option);
     }
   }
 };
