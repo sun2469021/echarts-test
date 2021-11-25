@@ -1,12 +1,14 @@
 <template>
   <div id="app">
+    <router-link to="bar">柱状图</router-link>
+    <router-link to="line">折线图</router-link>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
+  name: "App"
 };
 </script>
 
