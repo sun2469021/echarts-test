@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="demo">
     <button @click="changeW">切换宽度</button>
     <div class="charts-content">
       <Echarts
@@ -14,7 +14,7 @@
 </template>
 <script>
 const createId = () => {
-  return new Date().getTime(); //时间戳变更---分支测试111
+  return new Date().getTime(); //时间戳变更---分支测试11122
 };
 const chartsLists = [
   {

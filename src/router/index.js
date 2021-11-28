@@ -9,7 +9,7 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      redirect: "/singBar"
+      redirect: "/bar"
     },
     {
       path: "/bar",

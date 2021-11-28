@@ -2,7 +2,7 @@
   <div :id="echartId" :style="style"></div>
 </template>
 <script>
-// 获取随机的id
+// 获取随机的id到底
 import option from "../../config/options";
 const createId = () => {
   // 默认用时间戳创建容器ID

@@ -40,8 +40,8 @@ var optionLine = {
 };
 /**
  * 获取echarts图渲染的option参数
- * option {Object} 默认公共option
- * type {String} 所选择的图的类型
+ * @param {Object} option 默认公共option
+ * @param {String} type  所选择的图的类型
  */
 let getOptions = (type = "bar") => {
   let option = {};
