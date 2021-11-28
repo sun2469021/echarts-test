@@ -1,15 +1,28 @@
 <template>
   <div id="demo">
-    <button @click="changeW">切换宽度</button>
-    <div class="charts-content">
-      <Echarts
-        v-for="item in chartsLists"
-        :key="item.id"
-        :echartId="item.id"
-        :echartsType="item.echartsType"
-        width="33%"
-      ></Echarts>
-    </div>
+    <el-container>
+      <el-aside width="300px">
+        <div>
+          <span>布局选择</span>
+          <el-radio-group v-model="radio">
+            <el-radio-button label="两个"></el-radio-button>
+            <el-radio-button label="三个"></el-radio-button>
+          </el-radio-group>
+        </div>
+        <button @click="changeW">切换宽度</button>
+      </el-aside>
+      <el-main>
+        <div class="charts-content">
+          <Echarts
+            v-for="item in chartsLists"
+            :key="item.id"
+            :echartId="item.id"
+            :echartsType="item.echartsType"
+            width="33%"
+          ></Echarts>
+        </div>
+      </el-main>
+    </el-container>
   </div>
 </template>
 <script>
@@ -31,11 +44,12 @@ const chartsLists = [
   }
 ];
 export default {
-  name: "",
+  name: "singBar",
   props: {},
   data() {
     return {
-      chartsLists
+      chartsLists,
+      radio: "两个"
     };
   },
   methods: {
