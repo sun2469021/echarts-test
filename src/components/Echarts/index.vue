@@ -3,7 +3,7 @@
 </template>
 <script>
 // 获取随机的id到底
-import option from "../../config/options";
+import option from "../../config/index";
 const createId = () => {
   // 默认用时间戳创建容器ID
   return new Date().getTime();
@@ -28,8 +28,10 @@ export default {
     },
     echartsType: {
       // 所选图表类型
-      type: String,
-      default: "bar"
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   watch: {
@@ -48,6 +50,9 @@ export default {
           height
         });
       }
+    },
+    echartsType(val) {
+      console.log(val);
     }
   },
   computed: {
@@ -66,6 +71,8 @@ export default {
     };
   },
   mounted() {
+    console.log(this.echartId);
+    console.log(this.echartsType);
     this.echartsInit(); // 初始化echarts图
     window.addEventListener("resize", this.echatsResize); // 监听容器变化自适应图
   },
