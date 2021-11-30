@@ -103,7 +103,7 @@ export default {
         chartType: "bar",
         colorMoudle: "moudle1",
         color: [],
-        limitInfo: {}
+        limitInfo: null
       },
       value: "front",
       options: [
@@ -126,7 +126,7 @@ export default {
       }; // 展示数据条数设置
       this.form.color = this.color ? this.color.split(",") : [];
       this.form.limitInfo =
-        this.dataLength && this.dataLength > 0 ? limitType : {};
+        this.dataLength && this.dataLength > 0 ? limitType : null;
       this.$emit("addChart", this.form);
     },
     // 布局设置
