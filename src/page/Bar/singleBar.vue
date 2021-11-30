@@ -30,6 +30,10 @@ const createId = () => {
   return new Date().getTime(); //时间戳变更---分支测试11122
 };
 const barData = {
+  nomalParams: {
+    horizontal: true,
+    color: ["red", "blue"]
+  }, //其它参数
   xdata: ["1月", "2月", "3月", "4月", "5月"],
   seriesData: [
     {
@@ -45,6 +49,10 @@ const barData = {
   ]
 };
 const barData1 = {
+  nomalParams: {
+    horizontal: false,
+    colorMoudle: "moudle3"
+  }, //其它参数，用于扩展
   xdata: ["1月", "2月", "3月", "4月", "5月"],
   seriesData: [
     {
@@ -60,13 +68,35 @@ const barData1 = {
   ]
 };
 const barData3 = {
+  nomalParams: {}, //其它参数
   xdata: ["1月", "2月", "3月", "4月", "5月"],
   seriesData: [
     {
       name: "行业分布",
       type: "pie",
-      // radius: ['40%', '70%'],
+      center: ["50%", "50%"],
       radius: "70%",
+      left: 0,
+      right: "66.66%",
+      top: 0,
+      bottom: 0,
+      data: [
+        { value: 1048, name: "Search Engine" },
+        { value: 735, name: "Direct" },
+        { value: 580, name: "Email" },
+        { value: 484, name: "Union Ads" },
+        { value: 300, name: "Video Ads" }
+      ]
+    },
+    {
+      name: "分行分布",
+      type: "pie",
+      center: ["50%", "50%"],
+      radius: "70%",
+      left: "33.3333%",
+      right: "33.3333%",
+      top: 0,
+      bottom: 0,
       data: [
         { value: 1048, name: "Search Engine" },
         { value: 735, name: "Direct" },
@@ -88,7 +118,7 @@ const chartsLists = [
   {
     id: 2,
     chartDatas: {
-      type: "line",
+      type: "pie",
       data: barData3
     }
   },

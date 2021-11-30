@@ -11,7 +11,7 @@ let getOptions = data => {
     case "bar":
       option = BarOption(data.data);
       break;
-    case "line":
+    case "pie":
       option = PieOption(data.data);
       break;
     default:
