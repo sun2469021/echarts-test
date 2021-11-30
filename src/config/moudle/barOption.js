@@ -7,7 +7,10 @@ import ChartsColor from "./chartsColor";
  * @returns
  */
 var barOption = function(data) {
-  let { horizontal, color, colorMoudle } = { ...data.nomalParams },
+  let { horizontal, color, colorMoudle } = {
+      ...data.nomalParams
+    },
+    { xdata, seriesData } = { ...data },
     xLine = {
       type: "category",
       axisLine: {
@@ -24,7 +27,7 @@ var barOption = function(data) {
           fontSize: "12"
         }
       },
-      data: data.xdata
+      data: xdata
     },
     yLine = {
       type: "value",
@@ -65,11 +68,12 @@ var barOption = function(data) {
       containLabel: true
     },
     legend: {
-      data: data.seriesData.forEach(item => item.name)
+      data: seriesData.forEach(item => item.name)
     },
+    dataZoom: [],
     xAxis: horizontal ? yLine : xLine,
     yAxis: horizontal ? xLine : yLine,
-    series: data.seriesData
+    series: seriesData
   };
 };
 export default barOption;

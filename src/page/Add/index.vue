@@ -1,6 +1,26 @@
 <template>
   <!-- 图表操作区域 -->
   <div>
+    <div style="margin-bottom:20px">
+      <span>布局选择</span>
+      <el-radio-group v-model="layout" @change="layoutChange">
+        <el-radio-button label="two">两个</el-radio-button>
+        <el-radio-button label="three">三个</el-radio-button>
+      </el-radio-group>
+    </div>
+    <div class="limit">
+      <el-select v-model="value" size="mini">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+          :popper-append-to-body="false"
+        >
+        </el-option>
+      </el-select>
+      <el-input size="mini" v-model="dataLength"></el-input>
+    </div>
     <el-form ref="form" :model="form" label-width="100px" size="mini">
       <el-form-item label="图表类型">
         <el-radio-group v-model="form.chartType">
@@ -32,13 +52,6 @@
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
-    <div>
-      <span>布局选择</span>
-      <el-radio-group v-model="layout" @change="layoutChange">
-        <el-radio-button label="two">两个</el-radio-button>
-        <el-radio-button label="three">三个</el-radio-button>
-      </el-radio-group>
-    </div>
   </div>
 </template>
 <script>
@@ -84,19 +97,39 @@ export default {
       chartsType, // 图表类型
       chartsColorMoudle, // 图标色系
       layout: "two", // 布局
-      color: "",
+      color: "", // 自定义颜色
+      dataLength: "", // 默认展示条数
       form: {
         chartType: "bar",
         colorMoudle: "moudle1",
-        color: []
-      }
+        color: [],
+        limitInfo: {}
+      },
+      value: "front",
+      options: [
+        {
+          value: "front",
+          label: "前"
+        },
+        {
+          value: "later",
+          label: "后"
+        }
+      ]
     };
   },
   methods: {
     onSubmit() {
+      let limitType = {
+        type: this.value,
+        limit: this.dataLength
+      }; // 展示数据条数设置
       this.form.color = this.color ? this.color.split(",") : [];
+      this.form.limitInfo =
+        this.dataLength && this.dataLength > 0 ? limitType : {};
       this.$emit("addChart", this.form);
     },
+    // 布局设置
     layoutChange() {
       this.$emit("layout", this.layout);
     }
@@ -109,6 +142,13 @@ export default {
     display: block;
     padding: 0;
     margin: 0;
+  }
+}
+.limit {
+  display: flex;
+  margin-bottom: 20px;
+  .el-select {
+    width: 80px;
   }
 }
 </style>
