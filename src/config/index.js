@@ -6,13 +6,15 @@ import PieOption from "./moudle/pieOption";
  * @param {String} type  所选择的图的类型
  */
 let getOptions = data => {
-  let option = {};
-  switch (data.type) {
+  let type = data.seriesData[0].type,
+    option = {};
+  switch (type) {
     case "bar":
-      option = BarOption(data.data);
+    case "line":
+      option = BarOption(data);
       break;
     case "pie":
-      option = PieOption(data.data);
+      option = PieOption(data);
       break;
     default:
       break;

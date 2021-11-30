@@ -26,8 +26,8 @@ export default {
       type: [String, Number],
       default: createId()
     },
-    echartsType: {
-      // 所选图表类型
+    echartsData: {
+      // 所选图表数据
       type: Object,
       default: () => {
         return {};
@@ -51,7 +51,7 @@ export default {
         });
       }
     },
-    echartsType(val) {
+    echartsData(val) {
       console.log(val);
     }
   },
@@ -71,13 +71,11 @@ export default {
     };
   },
   mounted() {
-    console.log(this.echartId);
-    console.log(this.echartsType);
     this.echartsInit(); // 初始化echarts图
     window.addEventListener("resize", this.echatsResize); // 监听容器变化自适应图
   },
   destroyed() {
-    // 销毁实例并初始化
+    // 销毁实例并初始化,清除监听事件
     window.removeEventListener("resize", this.echatsResize);
     if (!this.myChart) {
       return;
@@ -90,11 +88,11 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       this.myChart = echarts.init(document.getElementById(this.echartId));
       // 使用刚指定的配置项和数据显示图表。
-      this.option = option.getOptions(this.echartsType);
+      this.option = option.getOptions(this.echartsData);
       this.myChart.setOption(this.option);
     },
     echatsResize() {
-      // 自适应图表
+      // 自适应图表方法
       this.myChart.resize();
     }
   }

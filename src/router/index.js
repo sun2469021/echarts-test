@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import SingBar from "@/page/Bar/singleBar.vue";
+import Demo from "@/page/Bar/demo.vue";
 import SingLine from "@/page/Line/singleLine.vue";
 
 Vue.use(Router);
@@ -14,7 +14,7 @@ const router = new Router({
     {
       path: "/bar",
       name: "SingBar",
-      component: SingBar
+      component: Demo
     },
     {
       path: "/line",

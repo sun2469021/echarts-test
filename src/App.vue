@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <router-link to="/bar">柱状图</router-link>
-    <router-link to="/line">折线图</router-link>
+    <div class="header">
+      <router-link to="/bar">柱状图</router-link>
+      <router-link to="/line">折线图</router-link>
+    </div>
     <router-view />
     <!-- <div @click="changeRotate">
       <div class="rotate">旋转</div>
@@ -30,14 +32,11 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less" scoped>
+.header {
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 20px;
 }
 .rotate {
   width: 50px;

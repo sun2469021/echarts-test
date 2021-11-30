@@ -2,23 +2,16 @@
   <div id="demo">
     <el-container>
       <el-aside width="300px">
-        <div>
-          <span>布局选择</span>
-          <el-radio-group v-model="radio">
-            <el-radio-button label="两个"></el-radio-button>
-            <el-radio-button label="三个"></el-radio-button>
-          </el-radio-group>
-        </div>
-        <button @click="changeW">切换宽度</button>
+        <Add @addChart="addChart" @layout="layout"></Add>
       </el-aside>
       <el-main>
-        <div class="charts-content">
+        <div class="charts-content" v-if="chartsLists.length > 0">
           <Echarts
             v-for="item in chartsLists"
             :key="item.id"
             :echartId="item.id"
-            :echartsType="item.chartDatas"
-            width="33%"
+            :echartsData="item.echartsData"
+            :width="width"
           ></Echarts>
         </div>
       </el-main>
@@ -26,6 +19,7 @@
   </div>
 </template>
 <script>
+import Add from "../Add/index.vue";
 const createId = () => {
   return new Date().getTime(); //时间戳变更---分支测试11122
 };
@@ -110,33 +104,27 @@ const barData3 = {
 const chartsLists = [
   {
     id: 1,
-    chartDatas: {
-      type: "bar",
-      data: barData
-    }
+    echartsData: barData
   },
   {
     id: 2,
-    chartDatas: {
-      type: "pie",
-      data: barData3
-    }
+    echartsData: barData3
   },
   {
     id: 3,
-    chartDatas: {
-      type: "bar",
-      data: barData1
-    }
+    echartsData: barData1
   }
 ];
 export default {
   name: "singBar",
   props: {},
+  components: {
+    Add
+  },
   data() {
     return {
       chartsLists,
-      radio: "两个"
+      width: "50%"
     };
   },
   mounted() {
@@ -149,6 +137,38 @@ export default {
       this.chartsLists.push({
         id,
         echartsType
+      });
+    },
+    // 新增图信息
+    addChart(val) {
+      console.log(val);
+      let nomalParams = { ...val },
+        xdata = ["1月", "2月", "3月", "4月", "5月"],
+        seriesData = [
+          {
+            name: "科学计数",
+            type: val.chartType,
+            data: Utils.TestData.getArrayElements()
+          }
+        ];
+      this.chartsLists.push({
+        id: createId(),
+        echartsData: {
+          nomalParams,
+          xdata,
+          seriesData
+        }
+      });
+      // let data = Utils.TestData.getArrayElements();
+      // console.log(data);
+    },
+    // 布局调整
+    layout(val) {
+      console.log(chartsLists);
+      this.chartsLists = [];
+      this.width = val == "two" ? "50%" : "33.33%";
+      this.$nextTick(() => {
+        this.chartsLists = chartsLists;
       });
     }
   }

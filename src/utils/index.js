@@ -1,6 +1,8 @@
 import Public from "./moudle/public";
+import TestData from "./moudle/testData";
 
 const Modules = {
-  Public
+  Public,
+  TestData
 };
 export default Modules;

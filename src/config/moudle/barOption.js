@@ -50,7 +50,8 @@ var barOption = function(data) {
       }
     };
   return {
-    color: color ? color : ChartsColor.getColors(colorMoudle),
+    color:
+      color && color.length > 0 ? color : ChartsColor.getColors(colorMoudle),
     tooltip: {
       trigger: "axis",
       axisPointer: {
