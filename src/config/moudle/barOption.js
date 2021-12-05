@@ -7,7 +7,7 @@ import ChartsColor from "./chartsColor";
  * @returns
  */
 var barOption = function(data) {
-  let { horizontal, color, colorMoudle } = {
+  let { horizontal, color, colorMoudle, limitType } = {
       ...data.nomalParams
     },
     { xdata, seriesData } = { ...data },
@@ -52,6 +52,10 @@ var barOption = function(data) {
         }
       }
     };
+  console.log(limitType);
+  console.log(typeof limitType != "undefined");
+  if (typeof limitType != "undefined") {
+  }
   return {
     color:
       color && color.length > 0 ? color : ChartsColor.getColors(colorMoudle),
@@ -64,13 +68,19 @@ var barOption = function(data) {
     grid: {
       left: "20",
       right: "20",
-      bottom: "3%",
+      bottom: "30",
       containLabel: true
     },
     legend: {
       data: seriesData.forEach(item => item.name)
     },
-    dataZoom: [],
+    dataZoom: [
+      {
+        type: "slider",
+        bottom: "5",
+        minValueSpan: "5"
+      }
+    ],
     xAxis: horizontal ? yLine : xLine,
     yAxis: horizontal ? xLine : yLine,
     series: seriesData

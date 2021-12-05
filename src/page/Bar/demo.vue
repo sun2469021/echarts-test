@@ -143,12 +143,25 @@ export default {
     addChart(val) {
       console.log(val);
       let nomalParams = { ...val },
-        xdata = ["1月", "2月", "3月", "4月", "5月"],
+        xdata = [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月"
+        ],
         seriesData = [
           {
             name: "科学计数",
             type: val.chartType,
-            data: Utils.TestData.getArrayElements()
+            data: Utils.TestData.getRandomArrayElements(xdata.length)
           }
         ];
       this.chartsLists.push({
@@ -159,7 +172,7 @@ export default {
           seriesData
         }
       });
-      // let data = Utils.TestData.getArrayElements();
+      // let data = Utils.TestData.getRandomArrayElements();
       // console.log(data);
     },
     // 布局调整

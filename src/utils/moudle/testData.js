@@ -36,9 +36,9 @@ let data = [
   169
 ];
 
-let getRandomArrayElements = (arr, count) => {
-  var shuffled = arr.slice(0),
-    i = arr.length,
+let getRandomArrayElements = (count = 5) => {
+  var shuffled = data.slice(0),
+    i = data.length,
     min = i - count,
     temp,
     index;
@@ -52,8 +52,6 @@ let getRandomArrayElements = (arr, count) => {
 };
 
 export default {
-  // Utils.Public.TestData.getArrayElements();
-  getArrayElements: function() {
-    return getRandomArrayElements(data, 5);
-  }
+  // Utils.Public.TestData.getRandomArrayElements();
+  getRandomArrayElements
 };
